@@ -25,3 +25,20 @@ body {
     margin-right: 5px;
     
 }
+.addMore {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 5px;
+    
+}
+#topicForm {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 5px;
+    
+}
+p {
+    font-size: .6rem;
+}
