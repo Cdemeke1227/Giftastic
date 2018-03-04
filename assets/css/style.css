@@ -1,0 +1,27 @@
+body {
+    background-image: url("../images/gun_metal.png");
+    color: white;
+}
+
+.topicArray {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.topicButton {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.topicGifs {
+    margin-left: 20px;
+}
+.gif {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    
+}
