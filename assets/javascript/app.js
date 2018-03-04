@@ -4,7 +4,7 @@ $(function () {
     console.log("hello chris");
 
     var topic = "NBA Player";
-    var topics = ["Micheal Jordan", "LeBron James", "Kobe Byrant", "Shaquille O'neal", "Stephen Curry", "Charles Barkley", "Kevin Durant", "Carmelo Anthony", "James Harden", "Chris Paul"];
+    var topics = ["Stephen Curry", "Micheal Jordan", "LeBron James", "Kobe Byrant", "James Harden", "Chris Paul"];
     var addTenMore = false;
     var value = null;
     var selectedButton = null;
