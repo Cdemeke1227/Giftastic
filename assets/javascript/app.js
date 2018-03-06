@@ -31,17 +31,24 @@ $(function () {
         }).then(function (response) {
             console.log(response);
             console.log(gifNum);
-            
+
             for (var i = gifNum; i < showCount; i++) {
                 var result = response.data
                 var rating = result[i].rating;
                 var title = result[i].title;
                 var type = result[i].type;
+                var aOne = $("<a>");
                 var pOne = $("<p>");
                 var pTwo = $("<p>");
                 var pThree = $("<p>");
                 var gifDiv = $("<div>");
                 var gifImage = $("<img>");
+                aOne.addClass("btn");
+                aOne.addClass("btn-dark");
+                aOne.addClass("btn-sm");
+                aOne.attr("href", result[i].images.fixed_height_small.url);
+                aOne.attr("download", "gif.gif")
+                aOne.text("Download");
                 pOne.text("Title : " + title);
                 pTwo.text("Rating : " + rating);
                 pThree.text("Type : " + type);
@@ -53,26 +60,24 @@ $(function () {
                 gifImage.attr("data-animate", result[i].images.fixed_height_small.url);
                 gifImage.attr("data-still", result[i].images.fixed_height_small_still.url);
                 gifImage.attr("data-state", "still");
-                gifDiv.append(gifImage);
-                gifDiv.append(pOne);
-                gifDiv.append(pTwo);
-                gifDiv.append(pThree);
+                gifDiv.append(gifImage, pOne, pTwo, pThree, aOne);
                 $(".topicGifs").append(gifDiv);
             }
-            $(".gifImage").on("click", function () {
-                var state = $(this).attr('data-state');
-                if (state == "still") {
-                    $(this).attr("src", $(this).data("animate"));
-                    $(this).attr("data-state", "animate");
-                } else {
-                    $(this).attr("src", $(this).data("still"));
-                    $(this).attr("data-state", "still");
-                }
-            })
         });
         addTenMore = false;
     }
+    function anitmateImage() {
+        var state = $(this).attr('data-state');
+        console.log(state);
 
+        if (state === "still") {
+            $(this).attr("src", $(this).data("animate"));
+            $(this).attr("data-state", "animate");
+        } else {
+            $(this).attr("src", $(this).data("still"));
+            $(this).attr("data-state", "still");
+        }
+    }
 
     function createButtons() {
         $(".topicArray").empty();
@@ -92,7 +97,6 @@ $(function () {
         topics.push(newTopic);
         createButtons();
     });
-
     $(".addMore").on("click", function () {
         if (selectedButton === null) {
             console.log(selectedButton);
@@ -101,11 +105,9 @@ $(function () {
             displayGif();
         }
     });
-
-
     $(".navbarTitle").text("Giftastic: " + topic + " Edition");
     $("#itemInputLabel").text("Add " + topic);
     $(document).on("click", ".topicButton", displayGif);
-
+    $(document).on("click", ".gifImage", anitmateImage);
     createButtons();
 });
