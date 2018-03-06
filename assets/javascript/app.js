@@ -8,14 +8,18 @@ $(function () {
     var addTenMore = false;
     var value = null;
     var selectedButton = null;
-    var limit = 10
+    var limit = 100;
+    var gifNum = 0;
+    var showCount = 10;
 
     function displayGif() {
-        $(".topicGifs").empty();
+        // $(".topicGifs").empty();
         if (addTenMore == true) {
             value = selectedButton;
-            limit = limit + 10;
+            gifNum = gifNum + 10;
+            showCount = showCount + 10;
         } else {
+            $(".topicGifs").empty();
             var value = $(this).attr("data-name").split(' ').join('+');
             selectedButton = value;
         }
@@ -26,7 +30,9 @@ $(function () {
             method: "GET"
         }).then(function (response) {
             console.log(response);
-            for (var i = 0; i < limit; i++) {
+            console.log(gifNum);
+            
+            for (var i = gifNum; i < showCount; i++) {
                 var result = response.data
                 var rating = result[i].rating;
                 var title = result[i].title;
@@ -39,6 +45,7 @@ $(function () {
                 pOne.text("Title : " + title);
                 pTwo.text("Rating : " + rating);
                 pThree.text("Type : " + type);
+                gifDiv.addClass("card");
                 gifDiv.addClass("gif");
                 gifImage.addClass("gifImage");
                 gifImage.attr("src", result[i].images.fixed_height_small_still.url);
