@@ -82,7 +82,7 @@ $(function () {
 
     function findTickets() {
         var ticketMaster_APIKey = "LArupGEb8gAMQ2uWg9JAZbXzTHjcEMY5";
-        var ticketmaster_queryURL = 'http://app.ticketmaster.com/discovery/v2/events.json?keyword=' + teamId + '&countryCode=US&apikey=' + ticketMaster_APIKey;
+        var ticketmaster_queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?keyword=' + teamId + '&countryCode=US&apikey=' + ticketMaster_APIKey;
         $.ajax({
             type: "GET",
             url: ticketmaster_queryURL,
