@@ -42,6 +42,10 @@ position: fixed;
     float: right;
     
 }
+.ticketImage {
+    width: 305px;
+    height: 225px;
+}
 #topicForm {
     margin-top: 1px;
     margin-bottom: 1px;
