@@ -12,33 +12,30 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark fixed-top ">
         <h1 class="navbarTitle"></h1>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" id="inputItem" type="search" placeholder="Add Player Name" aria-label="Search">
+            <input id="addItem" class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Submit">
+        </form>
+        <div class="topicArray"></div>
+        </div>
     </nav>
-    <div class="topicArray"></div>
+
     <div class="contianer">
         <div class="row">
-            <div class="col-lg-9 col-md-8 col-sm-6">
-                <div class="row topicGifs"></div>
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <div class="row topicGifs">
+                </div>
             </div>
-            <div class="col-lg-3 col-md-4  col-sm-6 addItems">
-                <button type="button" class="btn btn-danger addMore">Add 10 More Gifs</button>
-                <form id="topicForm">
-                    <label for="topicInput">
-                        <h3 id="itemInputLabel"></h3>
-                    </label>
-                    <br>
-                    <input id="inputItem" type="text">
-                    <br>
-                    <br>
-                    <input id="addItem" class="btn btn-secondary" type="submit" value="Submit">
-                </form>
+
+
+            <div class="col-lg-6 col-md-4 col-sm-2">
+                <div class="row topicGifs">
+                </div>
             </div>
         </div>
     </div>
-    <svg viewBox="0 0 8 8" class="icon">
-        <use xlink:href="#account-login" class="icon-account-login"></use>
-    </svg>
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

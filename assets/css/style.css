@@ -1,13 +1,19 @@
 body {
     background-image: url("../images/gun_metal.png");
     color: white;
+    padding-top: 150px;
+}
+.navbar {
+position: fixed;
 }
 
+
 .topicArray {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100%
 }
 .topicButton {
     margin-top: 5px;
@@ -16,7 +22,10 @@ body {
     margin-right: 5px;
 }
 .topicGifs {
+    margin-top: 5px;
+    margin-bottom: 5px;
     margin-left: 20px;
+    margin-right: 5px;
 }
 .gif {
     margin-top: 5px;
@@ -27,17 +36,26 @@ body {
 }
 .addMore {
     margin-top: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 1px;
+    margin-left: 10px;
+    margin-right: 5px;
+    float: right;
+    
+}
+#topicForm {
+    margin-top: 1px;
+    margin-bottom: 1px;
     margin-left: 10px;
     margin-right: 5px;
     
 }
-#topicForm {
-    margin-top: 5px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-    margin-right: 5px;
-    
+#inputLabel {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+#inputItem {
+    margin-top: 1px;
+    margin-bottom: 1px;
 }
 p {
     color: black;
@@ -48,4 +66,7 @@ a {
     color: white;;
     font-size: .6rem;
     margin-bottom: 0px;
+}
+h3 {
+    font-size: 1rem;
 }

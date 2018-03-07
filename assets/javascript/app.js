@@ -22,6 +22,8 @@ $(function () {
             $(".topicGifs").empty();
             var value = $(this).attr("data-name").split(' ').join('+');
             selectedButton = value;
+            createButtons();
+            $(".topicArray").append('<button type="button" class="btn btn-danger addMore">Add 10 More Gifs</button>');
         }
         var APIKey = "dVeZE1jTUX9IzYurR1xbjnVHWuWBSLH1";
         var queryURL = 'https://api.giphy.com/v1/gifs/search?q=' + value + '&api_key=' + APIKey + '&limit=' + limit;
@@ -31,42 +33,55 @@ $(function () {
         }).then(function (response) {
             console.log(response);
             console.log(gifNum);
+            $(".topicGifs").append(' <div id="gifList"></div>');
 
             for (var i = gifNum; i < showCount; i++) {
                 var result = response.data
                 var rating = result[i].rating;
                 var title = result[i].title;
                 var type = result[i].type;
+                //---
+                var gifList = $("#gifList");
+                var aList = $("<a>");
+                //---
                 var aOne = $("<a>");
                 var pOne = $("<p>");
                 var pTwo = $("<p>");
                 var pThree = $("<p>");
                 var gifDiv = $("<div>");
                 var gifImage = $("<img>");
+                //---
+                aList.addClass("list-group-item");
+                // aList.attr("href", "#list-item-" + (i + 1));
+                // gifDiv.attr("id", "list-item-" + (i + 1));
+                //---
                 aOne.addClass("btn");
                 aOne.addClass("btn-dark");
                 aOne.addClass("btn-sm");
-                aOne.attr("href", result[i].images.fixed_height_small.url);
+                aOne.attr("href", result[i].images.fixed_height.url);
                 aOne.attr("download", "gif.gif")
-                aOne.text("Download");
+                aOne.text("Download gif " + (i + 1));
                 pOne.text("Title : " + title);
                 pTwo.text("Rating : " + rating);
                 pThree.text("Type : " + type);
                 gifDiv.addClass("card");
                 gifDiv.addClass("gif");
                 gifImage.addClass("gifImage");
-                gifImage.attr("src", result[i].images.fixed_height_small_still.url);
+                gifImage.attr("src", result[i].images.fixed_height_still.url);
                 gifImage.attr("alt", value);
-                gifImage.attr("data-animate", result[i].images.fixed_height_small.url);
+                gifImage.attr("data-animate", result[i].images.fixed_height.url);
                 gifImage.attr("data-still", result[i].images.fixed_height_small_still.url);
                 gifImage.attr("data-state", "still");
-                gifDiv.append(gifImage, pOne, pTwo, pThree, aOne);
-                $(".topicGifs").append(gifDiv);
+                gifDiv.append(pOne, gifImage);
+                // gifDiv.append(gifImage, pOne, pTwo, pThree, aOne);
+                // $(".topicGifs").append(gifDiv);
+                gifList.append(aList);
+                aList.append(gifDiv, pOne, pTwo, pThree, aOne);
             }
         });
         addTenMore = false;
     }
-    function anitmateImage() {
+    function animateImage() {
         var state = $(this).attr('data-state');
         console.log(state);
 
@@ -97,17 +112,18 @@ $(function () {
         topics.push(newTopic);
         createButtons();
     });
-    $(".addMore").on("click", function () {
+    function addTenMoreGifs() {
         if (selectedButton === null) {
             console.log(selectedButton);
         } else {
             addTenMore = true;
             displayGif();
         }
-    });
+    }
     $(".navbarTitle").text("Giftastic: " + topic + " Edition");
     $("#itemInputLabel").text("Add " + topic);
     $(document).on("click", ".topicButton", displayGif);
-    $(document).on("click", ".gifImage", anitmateImage);
+    $(document).on("click", ".gifImage", animateImage);
+    $(document).on("click", ".addMore", addTenMoreGifs);
     createButtons();
 });
