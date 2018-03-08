@@ -5,6 +5,7 @@ $(function () {
     var topic = "NBA";
     var topics = ["Stephen Curry", "Micheal Jordan", "LeBron James", "Kobe Byrant", "James Harden", "Chris Paul"];
     var teams = ["Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Bobcats", "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets", "Detroit Pistons", "Golden State Warriors", "Houston Rockets", "Indiana Pacers", "LA Clippers", "LA Lakers", "Memphis Grizzlies", "Miami Heat", "Milwaukee Bucks", "Minnesota Timberwolves", "New Orleans Hornets", "New York Knicks", "Oklahoma City Thunder", "Orlando Magic", "Philadelphia Sixers", "Phoenix Suns", "Portland Trail Blazers", "Sacramento Kings", "San Antonio Spurs", "Toronto Raptors", "Utah Jazz", "Washington Wizards"];
+    var topicFavorites = [];
     var teamId = null;
     var addTenMore = false;
     var value = null;
@@ -12,6 +13,7 @@ $(function () {
     var limit = 100;
     var gifNum = 0;
     var showCount = 10;
+    var title;
 
     function displayGif() {
         // $(".topicGifs").empty();
@@ -40,13 +42,16 @@ $(function () {
             for (var i = gifNum; i < showCount; i++) {
                 var result = response.data
                 var rating = result[i].rating;
-                var title = result[i].title;
                 var type = result[i].type;
+                var gifUrl = result[i].images.fixed_height.url
+                var gifUrlStill = result[i].images.fixed_height.url;
+                title = result[i].title;
                 //---
                 var gifList = $("#gifList");
                 var aList = $("<a>");
                 //---
                 var aOne = $("<a>");
+                var aTwo = $("<a>");
                 var pOne = $("<p>");
                 var pTwo = $("<p>");
                 var pThree = $("<p>");
@@ -55,22 +60,26 @@ $(function () {
                 //---
                 aList.addClass("list-group-item");
                 //---
-                aOne.addClass("btn");
-                aOne.addClass("btn-dark");
-                aOne.addClass("btn-sm");
-                aOne.attr("href", result[i].images.fixed_height.url);
+                aOne.addClass("btn btn-dark btn-sm downloadButton");
+                aTwo.addClass("btn btn-secondary btn-sm savFavButton")
+                pOne.addClass("card-title")
+                aOne.attr("href", gifUrl);
                 aOne.attr("download", "gif.gif")
+                aTwo.attr("value",title) 
                 aOne.text("Download gif " + (i + 1));
+                aTwo.text("Save to Favorites");
                 pOne.text("Title : " + title);
-                pTwo.text("Rating : " + rating);
+
+                if (rating !== "R") {pTwo.text("Rating : " + rating);}
+
                 pThree.text("Type : " + type);
                 gifDiv.addClass("card");
                 gifDiv.addClass("gif");
                 gifImage.addClass("gifImage");
                 gifImage.attr("src", result[i].images.fixed_height_still.url);
                 gifImage.attr("alt", value);
-                gifImage.attr("data-animate", result[i].images.fixed_height.url);
-                gifImage.attr("data-still", result[i].images.fixed_height_small_still.url);
+                gifImage.attr("data-animate", gifUrl);
+                gifImage.attr("data-still", gifUrlStill);
                 gifImage.attr("data-state", "still");
                 gifDiv.append(pOne, gifImage);
                 gifList.append(aList);
@@ -81,6 +90,7 @@ $(function () {
     }
 
     function findTickets() {
+        $(".topicTickets").empty();
         var ticketMaster_APIKey = "LArupGEb8gAMQ2uWg9JAZbXzTHjcEMY5";
         var ticketmaster_queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?keyword=' + teamId + '&countryCode=US&apikey=' + ticketMaster_APIKey;
         $.ajax({
@@ -162,7 +172,15 @@ $(function () {
         teamId = $(this).attr("value").split(' ').join('+').trim();
         findTickets();
     }
+function addFav() {
 
+    favpick = $(this).val();
+    console.log(favpick);
+    
+    topicFavorites.push(favpick);
+    console.log(topicFavorites);
+    
+}
     function animateImage() {
         var state = $(this).attr('data-state');
         console.log(state);
@@ -206,6 +224,7 @@ $(function () {
     $("#itemInputLabel").text("Add " + topic);
     findTeam();
     $(document).on("click", ".dropdown-item", showTeam);
+    $(document).on("click", ".savFavButton", addFav);
     $(document).on("click", ".topicButton", displayGif);
     $(document).on("click", ".gifImage", animateImage);
     $(document).on("click", ".addMore", addTenMoreGifs);

@@ -1,7 +1,7 @@
 body {
     background-image: url("../images/gun_metal.png");
     color: white;
-    padding-top: 150px;
+    padding-top: 180px;
 }
 .navbar {
 position: fixed;
@@ -34,6 +34,10 @@ position: fixed;
     margin-right: 5px;
     
 }
+.gifImage {
+    height: 200px;
+
+}
 .addMore {
     margin-top: 5px;
     margin-bottom: 1px;
@@ -41,6 +45,9 @@ position: fixed;
     margin-right: 5px;
     float: right;
     
+}
+.savFavButton {
+    margin-left: 10px;
 }
 .ticketImage {
     width: 305px;
@@ -63,14 +70,23 @@ position: fixed;
 }
 p {
     color: black;
-    font-size: .6rem;
+    font-size: 1rem;
     margin-bottom: 0px;
 }
 a {
     color: white;;
-    font-size: .6rem;
+    font-size: .8rem;
     margin-bottom: 0px;
 }
 h3 {
     font-size: 1rem;
+}
+.card-title {
+    color: black;
+    font-size: 1.2rem;
+    margin-bottom: 0px;   
+}
+.downloadButton {
+    margin-left: 40%;
+    margin-right: 5px
 }
