@@ -44,7 +44,7 @@ $(function () {
                 var rating = result[i].rating;
                 var type = result[i].type;
                 var gifUrl = result[i].images.fixed_height.url
-                var gifUrlStill = result[i].images.fixed_height.url;
+                var gifUrlStill = result[i].images.fixed_height_still.url;
                 title = result[i].title;
                 //---
                 var gifList = $("#gifList");
@@ -76,7 +76,7 @@ $(function () {
                 gifDiv.addClass("card");
                 gifDiv.addClass("gif");
                 gifImage.addClass("gifImage");
-                gifImage.attr("src", result[i].images.fixed_height_still.url);
+                gifImage.attr("src", gifUrlStill);
                 gifImage.attr("alt", value);
                 gifImage.attr("data-animate", gifUrl);
                 gifImage.attr("data-still", gifUrlStill);
